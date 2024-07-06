@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 // カスタムカラーの定義
-extension Color {
+public extension Color {
     static let gold = Color(red: 1, green: 215/255, blue: 0)
     static let snow = Color(red: 255/255, green: 250/255, blue: 250/255)
     static let azure = Color(red: 240/255, green: 255/255, blue: 255/255)
