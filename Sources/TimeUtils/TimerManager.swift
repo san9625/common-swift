@@ -13,11 +13,11 @@ public class TimerManager {
     private var remainingTime: Int = 0
     private var duration: Int
 
-    init(duration: Int) {
+    public init(duration: Int) {
         self.duration = duration
     }
 
-    func startTimer(completion: @escaping () -> Void) {
+    public func startTimer(completion: @escaping () -> Void) {
         
         remainingTime = duration
         
@@ -35,7 +35,7 @@ public class TimerManager {
         }
     }
 
-    func stopTimer() {
+    public func stopTimer() {
         timer?.invalidate()
         timer = nil
     }

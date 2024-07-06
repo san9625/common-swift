@@ -14,7 +14,7 @@ public class AudioSetting {
     
     public static var flagAudioSetting = 0
     
-    func setupAudioSessionForSpeaker(completion: ((Error?) -> Void)? = nil) {
+    public func setupAudioSessionForSpeaker(completion: ((Error?) -> Void)? = nil) {
         let audioSession = AVAudioSession.sharedInstance()
         do {
             try audioSession.setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker])
@@ -27,7 +27,7 @@ public class AudioSetting {
         }
     }
 
-    func turnOffSpeaker(completion: ((Error?) -> Void)? = nil) {
+    public func turnOffSpeaker(completion: ((Error?) -> Void)? = nil) {
         let audioSession = AVAudioSession.sharedInstance()
         do {
             try audioSession.setCategory(.playAndRecord, mode: .default)
