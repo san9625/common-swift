@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 public class ImageStorageManager {
-    static let shared = ImageStorageManager()
+    public static let shared = ImageStorageManager()
     private let fileManager = FileManager.default
     private var documentsDirectory: URL {
         return fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
