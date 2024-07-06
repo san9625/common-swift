@@ -15,7 +15,7 @@ public class ImageStorageManager {
         return fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
     }
 
-    func saveImage(_ image: UIImage, name: String) -> Bool {
+    public func saveImage(_ image: UIImage, name: String) -> Bool {
         let fileURL = documentsDirectory.appendingPathComponent(name)
         //guard let data = image.jpegData(compressionQuality: 1) else { return false }
         guard let data = image.pngData() else { return false }
@@ -28,7 +28,7 @@ public class ImageStorageManager {
         }
     }
 
-    func loadImage(name: String) -> UIImage? {
+    public func loadImage(name: String) -> UIImage? {
         let fileURL = documentsDirectory.appendingPathComponent(name)
         guard let imageData = try? Data(contentsOf: fileURL) else { return nil }
         return UIImage(data: imageData)
