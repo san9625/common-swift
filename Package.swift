@@ -12,7 +12,8 @@ let package = Package(
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "common-swift",
-            targets: ["DesignUtils", "DeviceUtils", "ImageUtils", "AppLifeTimeUtils", "NetworkUtils", "TimeUtils"]),
+            //targets: ["DesignUtils", "DeviceUtils", "ImageUtils", "AppLifeTimeUtils", "NetworkUtils", "TimeUtils"]),
+            targets: ["Utils"]),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -20,19 +21,22 @@ let package = Package(
         //.target(
         //    name: "common-swift"),
         .target(
-            name: "DesignUtils"),
-        .target(
-            name: "DeviceUtils"),
-        .target(
-            name: "ImageUtils"),
-        .target(
-            name: "AppLifeTimeUtils"),
-        .target(
-            name: "NetworkUtils"),
-        .target(
-            name: "TimeUtils"),
+            name: "Utils"),
+//        .target(
+//            name: "DesignUtils"),
+//        .target(
+//            name: "DeviceUtils"),
+//        .target(
+//            name: "ImageUtils"),
+//        .target(
+//            name: "AppLifeTimeUtils"),
+//        .target(
+//            name: "NetworkUtils"),
+//        .target(
+//            name: "TimeUtils"),
         .testTarget(
             name: "common-swiftTests",
-            dependencies: ["DesignUtils", "DeviceUtils", "ImageUtils", "AppLifeTimeUtils", "NetworkUtils", "TimeUtils"]),
+            dependencies: ["Utils"]),
+            //dependencies: ["DesignUtils", "DeviceUtils", "ImageUtils", "AppLifeTimeUtils", "NetworkUtils", "TimeUtils"]),
     ]
 )

@@ -9,7 +9,7 @@ import AVFoundation
 
 public class AudioSetting {
     
-    static let shared = AudioSetting()
+    public static let shared = AudioSetting()
     private init() {}
     
     public static var flagAudioSetting = 0
