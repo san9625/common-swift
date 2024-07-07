@@ -12,14 +12,18 @@ public class AudioSetting {
     public static let shared = AudioSetting()
     private init() {}
     
-    public static var flagAudioSetting = 0
+    private var audioMode: audioMode = .mic
     
-    public func setupAudioSessionForSpeaker(completion: ((Error?) -> Void)? = nil) {
+    public func getAudioMode() -> audioMode {
+        return self.audioMode
+    }
+    
+    public func setupAudioSessionForSpeaker(mode: AVAudioSession.Mode, completion: ((Error?) -> Void)? = nil) {
         let audioSession = AVAudioSession.sharedInstance()
         do {
-            try audioSession.setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker])
+            try audioSession.setCategory(.playAndRecord, mode: mode, options: [.defaultToSpeaker])
             try audioSession.setActive(true)
-            Self.flagAudioSetting = 1
+            self.audioMode = .speaker
             completion?(nil)  // 成功時、エラーなしでコールバックを呼び出す（存在する場合）
         } catch {
             print("オーディオセッション設定エラー: \(error)")
@@ -27,17 +31,21 @@ public class AudioSetting {
         }
     }
 
-    public func turnOffSpeaker(completion: ((Error?) -> Void)? = nil) {
+    public func turnOffSpeaker(mode: AVAudioSession.Mode, completion: ((Error?) -> Void)? = nil) {
         let audioSession = AVAudioSession.sharedInstance()
         do {
-            try audioSession.setCategory(.playAndRecord, mode: .default)
+            try audioSession.setCategory(.playAndRecord, mode: mode)
             try audioSession.setActive(true)
-            Self.flagAudioSetting = 0
+            self.audioMode = .mic
             completion?(nil)  // 成功時、エラーなしでコールバックを呼び出す（存在する場合）
         } catch {
             print("オーディオセッション設定エラー: \(error)")
             completion?(error)  // 失敗時、エラー情報をコールバックに渡す（存在する場合）
         }
     }
-    
+}
+
+public enum audioMode {
+    case mic
+    case speaker
 }
