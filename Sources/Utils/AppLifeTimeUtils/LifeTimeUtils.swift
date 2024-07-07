@@ -11,6 +11,9 @@ let key_isFastLaunch = "hasLaunchedBefore"
 
 public class AppLifeCycleManager {
     
+    public static let shared = AppLifeCycleManager()
+    private init() {}
+    
     private var isFirstLaunch = UserDefaults.standard.bool(forKey: key_isFastLaunch)
     
     // 初回起動の場合、trueを返却
