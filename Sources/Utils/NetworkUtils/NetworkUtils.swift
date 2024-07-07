@@ -16,7 +16,7 @@ public class NetworkManager {
     private init() {}
     
     // 現在のネットワーク状態を確認し、ネットワークに接続していればtrueを、接続していなければfalse返却する
-    func isConnectedToNetwork() -> Bool {
+    public func isConnectedToNetwork() -> Bool {
         guard let flags = getFlags() else { return false }
         return flags.contains(.reachable) && !flags.contains(.connectionRequired)
     }
