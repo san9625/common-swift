@@ -8,6 +8,7 @@
 import Foundation
 import Network
 import AVFoundation
+import SystemConfiguration
 
 public class NetworkManager {
     
@@ -15,17 +16,18 @@ public class NetworkManager {
     private init() {}
     
     // 現在のネットワーク状態を確認し、ネットワークに接続していればtrueを、接続していなければfalse返却する
-    public func isConnectedToNetwork() -> Bool {
- 
-        let monitor = NWPathMonitor()
-        let currentPath = monitor.currentPath
+    func isConnectedToNetwork() -> Bool {
+        guard let flags = getFlags() else { return false }
+        return flags.contains(.reachable) && !flags.contains(.connectionRequired)
+    }
+
+     private func getFlags() -> SCNetworkReachabilityFlags? {
+        var flags = SCNetworkReachabilityFlags()
         
-        if currentPath.status == .satisfied {
-            return true
-        } else {
-            return false
-        }
-       
+        guard let reachability = SCNetworkReachabilityCreateWithName(nil, "www.google.com") else { return nil }
+        SCNetworkReachabilityGetFlags(reachability, &flags)
+        
+        return flags
     }
     
     // ネットワーク接続の状態変化を監視する
