@@ -7,20 +7,20 @@
 
 import Foundation
 
-public func checkIsFirstLaunch() -> Bool {
-    let userDefaults = UserDefaults.standard
-    
-    // key: hasLaunchedBefore の値がfalseの場合trueを返却する
-    if !userDefaults.bool(forKey: "hasLaunchedBefore") {
-        // フラグをtrueに設定して、次回の起動ではこのブロックが実行されないようにします。
-        //userDefaults.set(true, forKey: "hasLaunchedBefore")
-        return true
-    // key: hasLaunchedBefore の値がtrueの場合falseを返却する
-    } else {
-        return false
-    }
-}
+let key_isFastLaunch = "hasLaunchedBefore"
 
-public func setIsFirstLaunchTrue() {
-    UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
+public class AppLifeCycleManager {
+    
+    private var isFirstLaunch = UserDefaults.standard.bool(forKey: key_isFastLaunch)
+    
+    // 初回起動の場合、trueを返却
+    // 初回起動でない場合、falseを返却
+    public func getIsFirstLaunch() -> Bool {
+        return !self.isFirstLaunch
+    }
+    
+    public func setIsFirstLaunchTrue() {
+        UserDefaults.standard.set(true, forKey: key_isFastLaunch)
+    }
+
 }
